@@ -12,6 +12,11 @@ set expandtab                   " use spaces, not tabs
 set backspace=indent,eol,start  " backspace through everything in insert mode
 set softtabstop=4 " makes the spaces feel like real tabs
 
+
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+
 "" Searching
 set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
@@ -37,6 +42,8 @@ Bundle 'tpope/vim-markdown'
 Bundle 'jamescasbon/vim-posterous'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'jcfaria/Vim-R-plugin'
+Bundle 'vimoutliner/vimoutliner'
 
 filetype plugin indent on       " load file type plugins + indentation
 
