@@ -8,3 +8,9 @@ git submodule init && git submodule update
 
 
 Launch vim and run :BundleInstall
+
+Command-t needs to be built: 
+
+  cd bundle/command-t && rake make
+
+needs rubygem-make, rubygem-bundle
