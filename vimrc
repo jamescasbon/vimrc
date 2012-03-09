@@ -48,8 +48,13 @@ Bundle 'vimoutliner/vimoutliner'
 filetype plugin indent on       " load file type plugins + indentation
 
 
-
-colorscheme github
+if has('gui_running')
+    set background=light
+    colorscheme github
+else
+    set background=dark
+    colorscheme solarized
+endif
 
 
 """ http://items.sjbach.com/319/configuring-vim-right
