@@ -14,3 +14,5 @@ Command-t needs to be built:
   cd bundle/command-t && rake make
 
 needs rubygem-make, rubygem-bundle
+
+Install pyflakes, pylint or flake8 for python syntax checking

@@ -34,7 +34,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'altercation/vim-colors-solarized'
 Bundle "git://git.wincent.com/command-t.git"
 Bundle "git://github.com/kchmck/vim-coffee-script.git"
-Bundle "git://github.com/kevinw/pyflakes-vim.git"
 Bundle 'https://github.com/ervandew/supertab'
 Bundle 'git://github.com/majutsushi/tagbar.git'
 Bundle 'https://github.com/msanders/snipmate.vim'
@@ -44,6 +43,7 @@ Bundle 'flazz/vim-colorschemes'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'jcfaria/Vim-R-plugin'
 Bundle 'vimoutliner/vimoutliner'
+Bundle 'scrooloose/syntastic.git'
 
 filetype plugin indent on       " load file type plugins + indentation
 
