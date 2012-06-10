@@ -16,3 +16,7 @@ Command-t needs to be built:
 needs rubygem-make, rubygem-bundle
 
 Install pyflakes, pylint or flake8 for python syntax checking
+
+    pip install --user flake8
+
+

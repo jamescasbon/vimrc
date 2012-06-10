@@ -12,7 +12,6 @@ set expandtab                   " use spaces, not tabs
 set backspace=indent,eol,start  " backspace through everything in insert mode
 set softtabstop=4 " makes the spaces feel like real tabs
 
-
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
@@ -23,7 +22,7 @@ set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
-
+""" Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
@@ -36,7 +35,6 @@ Bundle "git://git.wincent.com/command-t.git"
 Bundle "git://github.com/kchmck/vim-coffee-script.git"
 Bundle 'https://github.com/ervandew/supertab'
 Bundle 'git://github.com/majutsushi/tagbar.git'
-Bundle 'https://github.com/msanders/snipmate.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'jamescasbon/vim-posterous'
 Bundle 'flazz/vim-colorschemes'
@@ -44,6 +42,14 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'jcfaria/Vim-R-plugin'
 Bundle 'vimoutliner/vimoutliner'
 Bundle 'scrooloose/syntastic.git'
+Bundle 'acx0/Conque-Shell'
+Bundle 'klen/python-mode'
+
+""" Snipmate fork
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "snipmate-snippets"
+Bundle "garbas/vim-snipmate"
 
 filetype plugin indent on       " load file type plugins + indentation
 
@@ -75,7 +81,7 @@ let g:SuperTabDefaultCompletionType = "context"
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
-
+" Tagbar to leader l
 let g:tagbar_usearrows = 1
 nnoremap <leader>l :TagbarToggle<CR>
 
@@ -83,7 +89,13 @@ set rnu
 
 autocmd BufWritePre *.py :%s/\s\+$//e
 
+""" disable pymode's linter and use syntastic
+let g:pymode_lint = 0
+let g:syntastic_python_checker = 'flake8'
+let g:syntastic_check_on_open = 1
 
+" default fold level
+set foldlevelstart=1
 
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -107,3 +119,5 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+"set guifont=Menlo\ Regular:h14
