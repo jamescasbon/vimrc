@@ -45,6 +45,8 @@ Bundle 'scrooloose/syntastic.git'
 Bundle 'acx0/Conque-Shell'
 Bundle 'klen/python-mode'
 
+Bundle 'alfredodeza/pytest.vim'
+
 """ Snipmate fork
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
