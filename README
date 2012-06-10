@@ -20,3 +20,14 @@ Install pyflakes, pylint or flake8 for python syntax checking
     pip install --user flake8
 
 
+For ipython, install locally 
+
+    pip install --user ipython
+
+And add this line to ~/.config/ipython/profile_default/ipython_config.py
+
+    import os; c.InteractiveShellApp.exec_files = [os.path.expanduser('~/.vim/ipy-venv.py')]
+
+
+
+
