@@ -44,6 +44,8 @@ Bundle 'vimoutliner/vimoutliner'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'acx0/Conque-Shell'
 Bundle 'tomtom/tcomment_vim'
+Bundle 'chrisbra/csv.vim'
+Bundle 'sjbach/lusty'
 
 " python 
 Bundle 'klen/python-mode'
@@ -60,9 +62,9 @@ filetype plugin indent on       " load file type plugins + indentation
 
 if has('gui_running')
     set background=light
-    colorscheme github
+    colorscheme peachpuff
 else
-    set background=dark
+    set background=light
     colorscheme solarized
 endif
 
@@ -88,6 +90,9 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " Tagbar to leader l
 let g:tagbar_usearrows = 1
 nnoremap <leader>l :TagbarToggle<CR>
+
+" LustyJuggler to leader j
+nmap <silent> <Leader>j :LustyJuggler<CR>
 
 set rnu
 
@@ -124,4 +129,19 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+" switch buffers with up/down
+nmap <Up> :bp<CR>
+nmap <Down> :bn<CR>
+
+" Map ctrl-movement keys to window switching
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
+
+" execute prject vimrc files
+set exrc
+set secure
+
 "set guifont=Menlo\ Regular:h14
+"
