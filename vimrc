@@ -43,8 +43,10 @@ Bundle 'jcfaria/Vim-R-plugin'
 Bundle 'vimoutliner/vimoutliner'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'acx0/Conque-Shell'
-Bundle 'klen/python-mode'
+Bundle 'tomtom/tcomment_vim'
 
+" python 
+Bundle 'klen/python-mode'
 Bundle 'alfredodeza/pytest.vim'
 
 """ Snipmate fork
