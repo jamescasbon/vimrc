@@ -15,6 +15,7 @@ set softtabstop=4 " makes the spaces feel like real tabs
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype jade setlocal ts=2 sts=2 sw=2
 
 "" Searching
 set hlsearch                    " highlight matches
@@ -46,6 +47,7 @@ Bundle 'acx0/Conque-Shell'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'chrisbra/csv.vim'
 Bundle 'sjbach/lusty'
+Bundle 'digitaltoad/vim-jade'
 
 " python 
 Bundle 'klen/python-mode'
