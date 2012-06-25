@@ -42,12 +42,12 @@ Bundle 'flazz/vim-colorschemes'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'jcfaria/Vim-R-plugin'
 Bundle 'vimoutliner/vimoutliner'
-Bundle 'scrooloose/syntastic.git'
 Bundle 'acx0/Conque-Shell'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'chrisbra/csv.vim'
 Bundle 'sjbach/lusty'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'scrooloose/syntastic'
 
 " python 
 Bundle 'klen/python-mode'
@@ -101,12 +101,18 @@ set rnu
 autocmd BufWritePre *.py :%s/\s\+$//e
 
 """ disable pymode's linter and use syntastic
-let g:pymode_lint = 0
-let g:syntastic_python_checker = 'flake8'
-let g:syntastic_check_on_open = 1
+let g:pymode_lint = 1
+let g:pymode_lint_onfly = 1
+let g:pymode_lint_cwindow = 1
+let g:pymode_lint_hold = 1
+let g:pymode_rope = 1
+let g:pymode_folding = 0
+let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
+" let g:syntastic_python_checker = 'flake8'
+" let g:syntastic_check_on_open = 1
 
 " default fold level
-set foldlevelstart=1
+set foldlevelstart=0
 
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
