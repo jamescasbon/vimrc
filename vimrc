@@ -3,7 +3,8 @@ syntax enable
 set encoding=utf-8
 set showcmd                     " display incomplete commands
 filetype off
-
+set t_Co=256
+set cursorline
 
 "" Whitespace
 set nowrap                      " don't wrap lines
@@ -32,10 +33,9 @@ Bundle 'gmarik/vundle'
 
 Bundle 'tpope/vim-fugitive'
 Bundle 'altercation/vim-colors-solarized'
-Bundle "git://git.wincent.com/command-t.git"
-Bundle "git://github.com/kchmck/vim-coffee-script.git"
-Bundle 'https://github.com/ervandew/supertab'
-Bundle 'git://github.com/majutsushi/tagbar.git'
+Bundle "kchmck/vim-coffee-script.git"
+Bundle 'ervandew/supertab'
+Bundle 'majutsushi/tagbar.git'
 Bundle 'tpope/vim-markdown'
 Bundle 'jamescasbon/vim-posterous'
 Bundle 'flazz/vim-colorschemes'
@@ -48,6 +48,8 @@ Bundle 'chrisbra/csv.vim'
 Bundle 'sjbach/lusty'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'scrooloose/syntastic'
+Bundle 'kien/ctrlp.vim'
+Bundle 'ootoovak/vim-tomorrow-night'
 
 " python 
 Bundle 'klen/python-mode'
@@ -61,14 +63,10 @@ Bundle "garbas/vim-snipmate"
 
 filetype plugin indent on       " load file type plugins + indentation
 
-
-if has('gui_running')
-    set background=light
-    colorscheme peachpuff
-else
-    set background=light
-    colorscheme solarized
-endif
+""" colors
+set background=light
+colorscheme tomorrow-night
+hi Normal ctermbg=NONE
 
 
 """ http://items.sjbach.com/319/configuring-vim-right
@@ -79,8 +77,8 @@ set scrolloff=3
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-
-
+""" completion
+set completeopt=longest,menuone,preview
 set ofu=syntaxcomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 " If you prefer the Omni-Completion tip window to close when a selection is
@@ -103,13 +101,13 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 """ disable pymode's linter and use syntastic
 let g:pymode_lint = 1
 let g:pymode_lint_onfly = 1
-let g:pymode_lint_cwindow = 1
-let g:pymode_lint_hold = 1
+let g:pymode_lint_cwindow = 0
 let g:pymode_rope = 1
 let g:pymode_folding = 0
 let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
 " let g:syntastic_python_checker = 'flake8'
 " let g:syntastic_check_on_open = 1
+let g:pymode_virtualenv = 1
 
 " default fold level
 set foldlevelstart=0
