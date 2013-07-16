@@ -45,15 +45,24 @@ Bundle 'vimoutliner/vimoutliner'
 Bundle 'acx0/Conque-Shell'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'chrisbra/csv.vim'
-Bundle 'sjbach/lusty'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'ootoovak/vim-tomorrow-night'
 
+Bundle 'lukerandall/haskellmode-vim'
+Bundle 'indenthaskell.vim'
+Bundle 'dag/vim2hs'
+" Enable autocompletion from vim2hs
+Bundle 'Shougo/neocomplcache'
+" let g:neocomplcache_enable_at_startup = 1
+Bundle 'ujihisa/neco-ghc'
+Bundle 'bling/vim-airline'
+
 " python 
 Bundle 'klen/python-mode'
 Bundle 'alfredodeza/pytest.vim'
+Bundle 'davidhalter/jedi-vim'
 
 """ Snipmate fork
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -61,12 +70,16 @@ Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 
+Bundle "jnwhiteh/vim-golang"
+Bundle "dwcook/Vim-Journal"
+Bundle "Rykka/riv.vim"
+
 filetype plugin indent on       " load file type plugins + indentation
 
 """ colors
 set background=light
-colorscheme tomorrow-night
-hi Normal ctermbg=NONE
+colorscheme tomorrow-night-eighties
+" hi Normal ctermbg=NONE
 
 
 """ http://items.sjbach.com/319/configuring-vim-right
@@ -78,14 +91,15 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 """ completion
-set completeopt=longest,menuone,preview
-set ofu=syntaxcomplete#Complete
+" set completeopt=longest,menuone,preview
+" set ofu=syntaxcomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 " If you prefer the Omni-Completion tip window to close when a selection is
 " made, these lines close it on movement in insert mode or when leaving
 " insert mode
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " Tagbar to leader l
 let g:tagbar_usearrows = 1
@@ -94,17 +108,15 @@ nnoremap <leader>l :TagbarToggle<CR>
 " LustyJuggler to leader j
 nmap <silent> <Leader>j :LustyJuggler<CR>
 
-set rnu
-
 autocmd BufWritePre *.py :%s/\s\+$//e
 
-""" disable pymode's linter and use syntastic
+""" configure python mode
 let g:pymode_lint = 1
-let g:pymode_lint_onfly = 1
-let g:pymode_lint_cwindow = 0
-let g:pymode_rope = 1
+" let g:pymode_lint_onfly = 1
+" let g:pymode_lint_cwindow = 0
+let g:pymode_rope = 0
 let g:pymode_folding = 0
-let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
+" let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
 " let g:syntastic_python_checker = 'flake8'
 " let g:syntastic_check_on_open = 1
 let g:pymode_virtualenv = 1
@@ -150,4 +162,46 @@ set exrc
 set secure
 
 "set guifont=Menlo\ Regular:h14
-"
+let g:haddock_browser="/usr/bin/chromium-browser"
+let g:haddock_docdir="/home/james/.cabal/share/doc/"
+
+" needed for powerline / airline
+set laststatus=2
+
+
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
+
+" Better copy & paste
+" When you want to paste large blocks of code into vim, press F2 before you
+" paste. At the bottom you should see ``-- INSERT (paste) --``.
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" Automatic reloading of .vimrc
+" autocmd! bufwritepost .vimrc source %
+
+
+" Showing line numbers and length
+set nonumber  " show line numbers
+set tw=79   " width of document (used by gd)
+set nowrap  " don't automatically wrap on load
+set fo-=t   " don't automatically wrap text when typing
+set colorcolumn=80
+" highlight ColorColumn ctermbg=233
+
+
+" easier formatting of paragraphs
+vmap Q gq
+nmap Q gqap
+
+
+" Settings for jedi-vim
+let g:jedi#related_names_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+let g:jedi#use_tabs_not_buffers = 0
