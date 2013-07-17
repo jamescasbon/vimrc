@@ -59,12 +59,13 @@ Bundle 'Shougo/neosnippet'
 Bundle 'honza/vim-snippets'
 let g:neocomplcache_enable_at_startup = 1
 Bundle 'ujihisa/neco-ghc'
-" Bundle 'bling/vim-airline'
+Bundle 'bling/vim-airline'
+" Bundle "maciakl/vim-neatstatus"
 Bundle 'bling/vim-bufferline'
 
 " python 
-" Bundle 'klen/python-mode'
-Bundle 'alfredodeza/pytest.vim'
+Bundle 'klen/python-mode'
+" Bundle 'alfredodeza/pytest.vim'
 Bundle 'davidhalter/jedi-vim'
 
 """ Snipmate fork
@@ -94,7 +95,8 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 """ completion
-" set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
+set completeopt-=preview
 " set ofu=syntaxcomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
@@ -108,9 +110,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:tagbar_usearrows = 1
 nnoremap <leader>l :TagbarToggle<CR>
 
-" LustyJuggler to leader j
-nmap <silent> <Leader>j :LustyJuggler<CR>
-
+" trim whitespace
 autocmd BufWritePre *.py :%s/\s\+$//e
 
 """ configure python mode
@@ -118,13 +118,20 @@ let g:pymode_lint = 0
 " let g:pymode_lint_onfly = 1
 " let g:pymode_lint_cwindow = 0
 let g:pymode_rope = 0
+let g:pymode_virtualenv = 1
 let g:pymode_folding = 0
 " let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
-let g:syntastic_python_checker = 'flake8'
-let g:syntastic_python_flake8_args = '--ignore=E501'
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = '--ignore=W391,E126'
+let g:syntastic_check_on_wq=0
 let g:syntastic_check_on_open = 0
-let g:pymode_virtualenv = 1
-" let g:pymode_lint_ignore="E126"
+" let g:syntastic_error_symbol='✗'
+" let g:syntastic_warning_symbol='⚠'
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+" set statusline+=%*
+
 
 " default fold level
 set foldlevelstart=0
@@ -205,11 +212,13 @@ nmap Q gqap
 
 
 " Settings for jedi-vim
+let g:jedi#auto_vim_configuration = 0
 let g:jedi#related_names_command = "<leader>z"
 let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 0
+let g:jedi#popup_select_first = 1
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#show_function_definition = "1"
 
 
 " Enable omni completion.
@@ -246,3 +255,5 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+
