@@ -48,7 +48,7 @@ Bundle 'chrisbra/csv.vim'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
-Bundle 'ootoovak/vim-tomorrow-night'
+Bundle 'mnoble/tomorrow-night-vim'
 
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'indenthaskell.vim'
@@ -59,11 +59,11 @@ Bundle 'Shougo/neosnippet'
 Bundle 'honza/vim-snippets'
 let g:neocomplcache_enable_at_startup = 1
 Bundle 'ujihisa/neco-ghc'
-Bundle 'bling/vim-airline'
+" Bundle 'bling/vim-airline'
 Bundle 'bling/vim-bufferline'
 
 " python 
-Bundle 'klen/python-mode'
+" Bundle 'klen/python-mode'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'davidhalter/jedi-vim'
 
@@ -114,15 +114,17 @@ nmap <silent> <Leader>j :LustyJuggler<CR>
 autocmd BufWritePre *.py :%s/\s\+$//e
 
 """ configure python mode
-let g:pymode_lint = 1
+let g:pymode_lint = 0
 " let g:pymode_lint_onfly = 1
 " let g:pymode_lint_cwindow = 0
 let g:pymode_rope = 0
 let g:pymode_folding = 0
 " let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
-" let g:syntastic_python_checker = 'flake8'
-" let g:syntastic_check_on_open = 1
+let g:syntastic_python_checker = 'flake8'
+let g:syntastic_python_flake8_args = '--ignore=E501'
+let g:syntastic_check_on_open = 0
 let g:pymode_virtualenv = 1
+" let g:pymode_lint_ignore="E126"
 
 " default fold level
 set foldlevelstart=0
