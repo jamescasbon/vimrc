@@ -48,17 +48,17 @@ Bundle 'chrisbra/csv.vim'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
-Bundle 'mnoble/tomorrow-night-vim'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
-Bundle 'lukerandall/haskellmode-vim'
-Bundle 'indenthaskell.vim'
-Bundle 'dag/vim2hs'
+" Bundle 'lukerandall/haskellmode-vim'
+" Bundle 'indenthaskell.vim'
+" Bundle 'dag/vim2hs'
 " Enable autocompletion from vim2hs
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'honza/vim-snippets'
-let g:neocomplcache_enable_at_startup = 1
-Bundle 'ujihisa/neco-ghc'
+" Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/neosnippet'
+" Bundle 'honza/vim-snippets'
+" let g:neocomplcache_enable_at_startup = 1
+" Bundle 'ujihisa/neco-ghc'
 Bundle 'bling/vim-airline'
 " Bundle "maciakl/vim-neatstatus"
 Bundle 'bling/vim-bufferline'
@@ -66,7 +66,7 @@ Bundle 'bling/vim-bufferline'
 " python 
 Bundle 'klen/python-mode'
 " Bundle 'alfredodeza/pytest.vim'
-Bundle 'davidhalter/jedi-vim'
+" Bundle 'davidhalter/jedi-vim'
 
 """ Snipmate fork
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -78,11 +78,15 @@ Bundle "jnwhiteh/vim-golang"
 Bundle "dwcook/Vim-Journal"
 Bundle "Rykka/riv.vim"
 
+Bundle "Valloric/YouCompleteMe"
+Bundle "SirVer/ultisnips"
+
+
 filetype plugin indent on       " load file type plugins + indentation
 
 """ colors
 set background=light
-colorscheme tomorrow-night-eighties
+colorscheme Tomorrow-Night-Eighties
 " hi Normal ctermbg=NONE
 
 
@@ -95,8 +99,8 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 """ completion
-set completeopt=longest,menuone
-set completeopt-=preview
+" set completeopt=longest,menuone
+" set completeopt+=preview
 " set ofu=syntaxcomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
@@ -130,7 +134,6 @@ let g:syntastic_check_on_open = 0
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-" set statusline+=%*
 
 
 " default fold level
@@ -210,50 +213,34 @@ set colorcolumn=80
 vmap Q gq
 nmap Q gqap
 
-
 " Settings for jedi-vim
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#related_names_command = "<leader>z"
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 1
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#show_function_definition = "1"
+" let g:jedi#auto_vim_configuration = 0
+" let g:jedi#related_names_command = "<leader>z"
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#popup_select_first = 1
+" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+" let g:jedi#use_tabs_not_buffers = 0
+" let g:jedi#show_function_definition = "1"
+" let g:jedi#goto_definitions_command = "<leader>d"
 
+nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+
+"" http://0x3f.org/blog/make-youcompleteme-ultisnips-compatible/
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 set splitbelow
 
-" neosnipet
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 
