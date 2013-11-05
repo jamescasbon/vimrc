@@ -31,26 +31,74 @@ Bundle 'gmarik/vundle'
 
 """ http://mirnazim.org/writings/vim-plugins-i-use/
 
-Bundle 'tpope/vim-fugitive'
+"" utility functions 
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "Shougo/vimproc.vim"
+Bundle "Shougo/unite.vim"
+Bundle "h1mesuke/unite-outline"
+Bundle "Lokaltog/vim-easymotion"
+
+
+"" colours
 Bundle 'altercation/vim-colors-solarized'
-Bundle "kchmck/vim-coffee-script.git"
-Bundle 'ervandew/supertab'
-Bundle 'majutsushi/tagbar.git'
-Bundle 'tpope/vim-markdown'
-Bundle 'jamescasbon/vim-posterous'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'jcfaria/Vim-R-plugin'
-Bundle 'vimoutliner/vimoutliner'
-Bundle 'acx0/Conque-Shell'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'chrisbra/csv.vim'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
-" Bundle 'lukerandall/haskellmode-vim'
+"" dev tools
+Bundle 'tpope/vim-fugitive'
+Bundle 'ervandew/supertab'
+Bundle 'majutsushi/tagbar.git'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'kien/ctrlp.vim'
+Bundle "Valloric/YouCompleteMe"
+Bundle "SirVer/ultisnips"
+
+" Bundle 'vimoutliner/vimoutliner'
+" Bundle 'acx0/Conque-Shell'
+" Bundle "aaronbieber/quicktask.git"
+"
+Bundle "vim-scripts/vimwiki"
+" Bundle "samsonw/vim-task"
+
+" Bundle "tomtom/viki_vim"
+" Bundle "tomtom/trag_vim"
+" Bundle "tomtom/vikitasks_vim"
+
+
+" status line
+Bundle 'bling/vim-airline'
+Bundle 'bling/vim-bufferline'
+
+"" Formats
+Bundle 'chrisbra/csv.vim'
+Bundle 'tpope/vim-markdown'
+Bundle 'digitaltoad/vim-jade'
+Bundle "kchmck/vim-coffee-script.git"
+Bundle 'jcfaria/Vim-R-plugin'
+Bundle "jnwhiteh/vim-golang"
+Bundle "dwcook/Vim-Journal"
+Bundle "Rykka/riv.vim"
+
+"" Typescript
+Bundle "clausreinke/typescript-tools"
+Bundle "leafgarland/typescript-vim"
+
+
+"" Haskell
+Bundle 'lukerandall/haskellmode-vim'
+Bundle 'ujihisa/neco-ghc'
+Bundle 'eagletmt/ghcmod-vim'
+Bundle "vim-scripts/indenthaskell.vim"
+
+"" Python
+Bundle 'klen/python-mode'
+Bundle 'jmcantrell/vim-virtualenv'
+" Bundle 'davidhalter/jedi-vim'
+
+
 " Bundle 'indenthaskell.vim'
 " Bundle 'dag/vim2hs'
 " Enable autocompletion from vim2hs
@@ -58,36 +106,15 @@ Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 " Bundle 'Shougo/neosnippet'
 " Bundle 'honza/vim-snippets'
 " let g:neocomplcache_enable_at_startup = 1
-" Bundle 'ujihisa/neco-ghc'
-Bundle 'bling/vim-airline'
-" Bundle "maciakl/vim-neatstatus"
-Bundle 'bling/vim-bufferline'
-
 " python 
-Bundle 'klen/python-mode'
-" Bundle 'alfredodeza/pytest.vim'
-" Bundle 'davidhalter/jedi-vim'
 
 """ Snipmate fork
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-" Bundle "snipmate-snippets"
-" Bundle "garbas/vim-snipmate"
-
-Bundle "jnwhiteh/vim-golang"
-Bundle "dwcook/Vim-Journal"
-Bundle "Rykka/riv.vim"
-
-Bundle "Valloric/YouCompleteMe"
-Bundle "SirVer/ultisnips"
-
 
 filetype plugin indent on       " load file type plugins + indentation
 
 """ colors
 set background=light
 colorscheme Tomorrow-Night-Eighties
-" hi Normal ctermbg=NONE
 
 
 """ http://items.sjbach.com/319/configuring-vim-right
@@ -102,8 +129,9 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " set completeopt=longest,menuone
 " set completeopt+=preview
 " set ofu=syntaxcomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
 " If you prefer the Omni-Completion tip window to close when a selection is
 " made, these lines close it on movement in insert mode or when leaving
 " insert mode
@@ -116,6 +144,7 @@ nnoremap <leader>l :TagbarToggle<CR>
 
 " trim whitespace
 autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.hs :%s/\s\+$//e
 
 """ configure python mode
 let g:pymode_lint = 0
@@ -134,7 +163,6 @@ let g:syntastic_check_on_open = 0
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-
 
 " default fold level
 set foldlevelstart=0
@@ -176,13 +204,11 @@ map <C-h> <C-w><Left>
 set exrc
 set secure
 
-"set guifont=Menlo\ Regular:h14
 let g:haddock_browser="/usr/bin/chromium-browser"
 let g:haddock_docdir="/home/james/.cabal/share/doc/"
 
 " needed for powerline / airline
 set laststatus=2
-
 
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
@@ -196,10 +222,6 @@ vnoremap > >gv  " better indentation
 set pastetoggle=<F2>
 set clipboard=unnamed
 
-" Automatic reloading of .vimrc
-" autocmd! bufwritepost .vimrc source %
-
-
 " Showing line numbers and length
 set nonumber  " show line numbers
 set tw=79   " width of document (used by gd)
@@ -207,7 +229,6 @@ set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
 " highlight ColorColumn ctermbg=233
-
 
 " easier formatting of paragraphs
 vmap Q gq
@@ -229,18 +250,50 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 
 "" http://0x3f.org/blog/make-youcompleteme-ultisnips-compatible/
-let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
+" let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-Tab>'
+let g:UltiSnipsExpandTrigger="<c-j>"
+
 
 " Enable omni completion.
 " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+let g:necoghc_enable_detailed_browse = 1
+au BufEnter *.hs compiler ghc
+
+au BufRead,BufNewFile *.ts        setlocal filetype=typescript
 
 set splitbelow
+
+"" Eclim
+" let g:EclimCompletionMethod = 'omnifunc'
+
+
+" Unite 
+" http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>p :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+
 
 
 
