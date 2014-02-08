@@ -61,6 +61,7 @@ Bundle "SirVer/ultisnips"
 " Bundle "aaronbieber/quicktask.git"
 "
 Bundle "vim-scripts/vimwiki"
+Bundle "teranex/vimwiki-tasks"
 " Bundle "samsonw/vim-task"
 
 " Bundle "tomtom/viki_vim"
@@ -113,7 +114,7 @@ Bundle 'jmcantrell/vim-virtualenv'
 filetype plugin indent on       " load file type plugins + indentation
 
 """ colors
-set background=light
+set background=dark
 colorscheme Tomorrow-Night-Eighties
 
 
@@ -143,8 +144,8 @@ let g:tagbar_usearrows = 1
 nnoremap <leader>l :TagbarToggle<CR>
 
 " trim whitespace
-autocmd BufWritePre *.py :%s/\s\+$//e
-autocmd BufWritePre *.hs :%s/\s\+$//e
+" autocmd BufWritePre *.py :%s/\s\+$//e
+" autocmd BufWritePre *.hs :%s/\s\+$//e
 
 """ configure python mode
 let g:pymode_lint = 0
@@ -293,6 +294,13 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 
+function! Diary()
+    :VimwikiMakeDiaryNote
+    :normal G
+    :read !date +'= \%H\%M ='
+    :normal G
+    :startinsert
+endfunction
 
 
 
